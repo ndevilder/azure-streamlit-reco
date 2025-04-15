@@ -1,6 +1,4 @@
-azure-functions
+streamlit
 pandas
-joblib
-scikit-learn
-scikit-surprise
-numpy==1.24.3
+requests
+json
