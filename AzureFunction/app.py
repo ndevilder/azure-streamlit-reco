@@ -2,9 +2,12 @@ import streamlit as st
 import pandas as pd
 import requests
 import json
+import os
 
 # Chemin vers ton fichier CSV
-csv_path = "recommendation_function/user_article_interaction_scaled.csv"
+
+csv_path = os.path.join(os.path.dirname(__file__), "recommendation_function", "user_article_interaction_scaled.csv")
+
 
 # Charger les user_id uniques
 @st.cache_data
@@ -14,7 +17,8 @@ def load_user_ids(path):
 
 # Récupérer les recommandations via l'Azure Function
 def get_recommendations(user_id):
-    url = f"http://localhost:7071/api/recommend?user_id={user_id}"
+    url = f"https://reco-function-ndv.azurewebsites.net/api/recommend?user_id={user_id}"
+
     try:
         response = requests.get(url)
         if response.status_code == 200:
